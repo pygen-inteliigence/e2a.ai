@@ -2148,6 +2148,7 @@ def index():
             display: flex;
             flex-direction: column;
             border-right: 1px solid #e5e7eb;
+            transition: all 0.3s ease;
         }
 
         .sidebar-header {
@@ -2164,11 +2165,12 @@ def index():
             padding: 0.5rem 1rem;
             border-radius: 5px;
             cursor: pointer;
-            transition: background-color 0.3s ease;
+            transition: all 0.3s ease;
         }
 
         .new-chat-btn:hover {
             background-color: #3c3799;
+            transform: translateY(-2px);
         }
 
         .chat-history {
@@ -2181,7 +2183,7 @@ def index():
             margin-bottom: 0.5rem;
             cursor: pointer;
             border-radius: 5px;
-            transition: background-color 0.3s ease;
+            transition: all 0.3s ease;
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
@@ -2189,6 +2191,7 @@ def index():
 
         .chat-item:hover {
             background-color: var(--sidebar-hover);
+            transform: translateX(5px);
         }
 
         .chat-item.active {
@@ -2207,11 +2210,12 @@ def index():
             cursor: pointer;
             padding: 0.5rem;
             border-radius: 5px;
-            transition: background-color 0.3s ease;
+            transition: all 0.3s ease;
         }
 
         .delete-all-btn:hover {
             background-color: #fee2e2;
+            transform: translateY(-2px);
         }
 
         .main-content {
@@ -2227,6 +2231,7 @@ def index():
             align-items: center;
             background-color: var(--chat-bg);
             border-bottom: 1px solid #e5e7eb;
+            transition: all 0.3s ease;
         }
 
         .logo {
@@ -2235,6 +2240,7 @@ def index():
             color: var(--primary-color);
             display: flex;
             align-items: center;
+            transition: all 0.3s ease;
         }
 
         .beta-label {
@@ -2245,6 +2251,7 @@ def index():
             border-radius: 10px;
             margin-left: 8px;
             transform: translateY(-8px) rotate(-10deg);
+            transition: all 0.3s ease;
         }
 
         .model-select {
@@ -2253,18 +2260,33 @@ def index():
             border: 1px solid #d1d5db;
             background-color: var(--chat-bg);
             color: var(--text-color);
+            transition: all 0.3s ease;
+        }
+
+        .model-select:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 2px rgba(79, 70, 229, 0.2);
         }
 
         main {
             flex: 1;
             display: flex;
             flex-direction: column;
-            padding: 2rem;
+            padding: 1rem;
             overflow-y: auto;
         }
 
         #welcome-screen {
             text-align: center;
+            opacity: 1;
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+
+        #welcome-screen.hidden {
+            opacity: 0;
+            pointer-events: none;
+            transform: translateY(-20px);
         }
 
         h1 {
@@ -2300,6 +2322,15 @@ def index():
             width: 100%;
             max-width: 800px;
             margin: 0 auto;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.5s ease;
+        }
+
+        #chat-container.visible {
+            display: block;
+            opacity: 1;
+            transform: translateY(0);
         }
 
         #chat-messages {
@@ -2317,6 +2348,14 @@ def index():
             padding: 0.8rem 1.2rem;
             border-radius: 18px;
             max-width: 80%;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.3s ease;
+        }
+
+        .message.visible {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         .user-message {
@@ -2349,6 +2388,13 @@ def index():
             border-radius: 25px;
             margin-right: 0.5rem;
             font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        #user-input input:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 2px rgba(79, 70, 229, 0.2);
         }
 
         #user-input button {
@@ -2359,11 +2405,12 @@ def index():
             border-radius: 25px;
             font-size: 1rem;
             cursor: pointer;
-            transition: background-color 0.3s ease;
+            transition: all 0.3s ease;
         }
 
         #user-input button:hover {
             background-color: #3c3799;
+            transform: translateY(-2px);
         }
 
         .beta-disclaimer {
@@ -2415,6 +2462,13 @@ def index():
             border-radius: 10px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             z-index: 1000;
+            opacity: 0;
+            transition: all 0.3s ease;
+        }
+
+        #name-input.visible {
+            display: block;
+            opacity: 1;
         }
 
         #name-input input {
@@ -2423,6 +2477,13 @@ def index():
             margin-bottom: 1rem;
             border: 1px solid #d1d5db;
             border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+
+        #name-input input:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 2px rgba(79, 70, 229, 0.2);
         }
 
         #name-input button {
@@ -2433,7 +2494,7 @@ def index():
             border: none;
             border-radius: 5px;
             cursor: pointer;
-            transition: background-color 0.3s ease;
+            transition: all 0.3s ease;
         }
 
         #name-input button:hover {
@@ -2462,13 +2523,70 @@ def index():
                 font-size: 1rem;
             }
         }
+
+        /* Enhanced styles for v8.0.1 transition */
+        @keyframes glitter {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .v8-transition {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, #ff00ff, #00ffff, #ff00ff);
+            background-size: 200% 200%;
+            animation: glitter 3s linear infinite;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.5s ease;
+            z-index: 9999;
+        }
+
+        .v8-transition.active {
+            opacity: 1;
+        }
+
+        .floating-icon {
+            position: absolute;
+            font-size: 2rem;
+            opacity: 0;
+            transition: all 1s ease;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0px); }
+        }
+
+        /* New wave animation */
+        @keyframes wave {
+            0% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0); }
+        }
+
+        .wave {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 100px;
+            background: url('data:image/svg+xml;utf8,<svg viewBox="0 0 1440 320" xmlns="http://www.w3.org/2000/svg"><path fill="%23ffffff" fill-opacity="1" d="M0,32L48,37.3C96,43,192,53,288,80C384,107,480,149,576,154.7C672,160,768,128,864,112C960,96,1056,96,1152,106.7C1248,117,1344,139,1392,149.3L1440,160L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>');
+            background-size: 1440px 100px;
+            animation: wave 3s ease-in-out infinite;
+        }
     </style>
 </head>
 <body>
    <div class="container">
     <div class="sidebar">
         <div class="sidebar-header">
-            <button class="new-chat-btn">New Chat</button>
+            <button  class="new-chat-btn">New Chat</button>
         </div>
         <div class="chat-history"></div>
         <div class="sidebar-footer">
@@ -2511,6 +2629,9 @@ def index():
     <input type="text" id="user-name" placeholder="Enter your name">
     <button id="submit-name">Submit</button>
 </div>
+<div class="v8-transition">
+    <div class="wave"></div>
+</div>
 
 <script>
     document.addEventListener('DOMContentLoaded', function() {
@@ -2526,18 +2647,20 @@ def index():
         const nameInput = document.getElementById('name-input');
         const submitNameButton = document.getElementById('submit-name');
         const modelSelect = document.querySelector('.model-select');
+        const betaLabel = document.querySelector('.beta-label');
+        const v8Transition = document.querySelector('.v8-transition');
 
         let currentChatId = null;
         let userName = localStorage.getItem('userName') || '';
         let chats = JSON.parse(localStorage.getItem('chats')) || {};
-        let currentModel = 'e2a-beta'; // Default model
+        let currentModel = 'e2a-beta';
 
         function showNameInput() {
-            nameInput.style.display = 'block';
+            nameInput.classList.add('visible');
         }
 
         function hideNameInput() {
-            nameInput.style.display = 'none';
+            nameInput.classList.remove('visible');
         }
 
         submitNameButton.addEventListener('click', function() {
@@ -2554,8 +2677,8 @@ def index():
             chats[currentChatId] = [];
             chatMessages.innerHTML = '';
             userInput.value = '';
-            welcomeScreen.style.display = 'none';
-            chatContainer.style.display = 'block';
+            welcomeScreen.classList.add('hidden');
+            chatContainer.classList.add('visible');
             addBotMessage(`Hello${userName ? ' ' + userName : ''}! How are you feeling today?`);
             updateChatHistory();
             saveChatToLocalStorage();
@@ -2611,8 +2734,8 @@ def index():
                 chats = {};
                 localStorage.removeItem('chats');
                 chatHistory.innerHTML = '';
-                welcomeScreen.style.display = 'block';
-                chatContainer.style.display = 'none';
+                welcomeScreen.classList.remove('hidden');
+                chatContainer.classList.remove('visible');
             }
         });
 
@@ -2624,47 +2747,48 @@ def index():
         });
 
         function sendMessage() {
-    const message = userInput.value.trim();
-    const selectedVersion = modelSelect.value;  // Get the selected model version
-    if (message) {
-        addUserMessage(message);
-        userInput.value = '';
-        addBotLoading();
+            const message = userInput.value.trim();
+            const selectedVersion = modelSelect.value;
+            if (message) {
+                addUserMessage(message);
+                userInput.value = '';
+                addBotLoading();
 
-        // Make an API call to your Flask backend
-        fetch('/chat', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({ message: message, version: selectedVersion })  // Include the selected version in the request
-        })
-        .then(response => response.json())
-        .then(data => {
-            removeBotLoading();
-            if (data.response) {
-                addBotMessage(data.response);  // Handle simple text responses
-            } else if (data.emotions && data.suggestions) {
-                const emotionText = `I sense that you're feeling ${data.emotions.join(', ')}. `;
-                const suggestionText = `Here's a suggestion: ${data.suggestions.join(' ')}`;
-                addBotMessage(emotionText + suggestionText);  // Handle emotions and suggestions
-            } else {
-                addBotMessage("Sorry, I couldn't understand your message.");
+                // Make an API call to your Flask backend
+                fetch('/chat', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ message: message, version: selectedVersion })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    removeBotLoading();
+                    if (data.response) {
+                        addBotMessage(data.response);
+                    } else if (data.emotions && data.suggestions) {
+                        const emotionText = `I sense that you're feeling ${data.emotions.join(', ')}. `;
+                        const suggestionText = `Here's a suggestion: ${data.suggestions.join(' ')}`;
+                        addBotMessage(emotionText + suggestionText);
+                    } else {
+                        addBotMessage("Sorry, I couldn't understand your message.");
+                    }
+                })
+                .catch(error => {
+                    removeBotLoading();
+                    addBotMessage("Sorry, there was an error processing your request.");
+                    console.error('Error:', error);
+                });
             }
-        })
-        .catch(error => {
-            removeBotLoading();
-            addBotMessage("Sorry, there was an error processing your request.");
-            console.error('Error:', error);
-        });
-    }
-}
+        }
 
         function addUserMessage(message) {
             const messageDiv = document.createElement('div');
             messageDiv.classList.add('message', 'user-message');
             messageDiv.textContent = message;
             chatMessages.appendChild(messageDiv);
+            setTimeout(() => messageDiv.classList.add('visible'), 10);
             chatMessages.scrollTop = chatMessages.scrollHeight;
             chats[currentChatId].push({type: 'user', content: message});
             saveChatToLocalStorage();
@@ -2676,6 +2800,7 @@ def index():
             messageDiv.classList.add('message', 'bot-message');
             messageDiv.textContent = message;
             chatMessages.appendChild(messageDiv);
+            setTimeout(() => messageDiv.classList.add('visible'), 10);
             chatMessages.scrollTop = chatMessages.scrollHeight;
             chats[currentChatId].push({type: 'bot', content: message});
             saveChatToLocalStorage();
@@ -2688,6 +2813,7 @@ def index():
             loadingDiv.innerHTML = 'Analyzing <span>.</span><span>.</span><span>.</span>';
             loadingDiv.id = 'loading';
             chatMessages.appendChild(loadingDiv);
+            setTimeout(() => loadingDiv.classList.add('visible'), 10);
             chatMessages.scrollTop = chatMessages.scrollHeight;
         }
 
@@ -2701,14 +2827,51 @@ def index():
         modelSelect.addEventListener('change', function() {
             currentModel = this.value;
             if (currentModel === 'e2a-v8.0.1') {
-                alert('Now running E2A v.8.0.1.');
+                v8Transition.classList.add('active');
+                addFloatingIcons();
+                setTimeout(() => {
+                    betaLabel.style.display = 'none';
+                    v8Transition.classList.remove('active');
+                    removeFloatingIcons();
+                }, 3000);
+            } else {
+                betaLabel.style.display = 'inline-block';
             }
         });
+
+        function addFloatingIcons() {
+            const icons = ['✨', '✨', '✨', '✨', '✨'];
+            icons.forEach((icon, index) => {
+                const iconElement = document.createElement('div');
+                iconElement.classList.add('floating-icon');
+                iconElement.textContent = icon;
+                iconElement.style.left = `${20 + (index * 15)}%`;
+                iconElement.style.top = `${20 + (index * 10)}%`;
+                iconElement.style.animationDelay = `${index * 0.2}s`;
+                v8Transition.appendChild(iconElement);
+                setTimeout(() => {
+                    iconElement.style.opacity = '1';
+                    iconElement.style.animation = 'float 3s ease-in-out infinite';
+                }, 100);
+            });
+        }
+
+        function removeFloatingIcons() {
+            const icons = document.querySelectorAll('.floating-icon');
+            icons.forEach(icon => {
+                icon.style.opacity = '0';
+                setTimeout(() => {
+                    icon.remove();
+                }, 1000);
+            });
+        }
 
         // Initialize the chat history on page load
         updateChatHistory();
     });
 </script>
+</body>
+</html>
 """
 def e2a_beta(user_input):
     # Function to analyze emotions (already in Beta)
